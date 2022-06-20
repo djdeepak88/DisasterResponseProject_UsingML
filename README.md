@@ -5,10 +5,10 @@ In this project, we will build a model to classify messages that are sent during
 
 Finally, this project contains a web app where you can input a message and get classification results.
 
-![Screenshot of Web App](WebAppscr.PNG)
+![Screenshot of Web App](WebAppscr.png)
 
 ## File Description:
-
+~~~~~~~
 disaster_response_pipeline
   |-- app
         |-- templates
@@ -27,6 +27,7 @@ disaster_response_pipeline
   |-- ETL Pipeline Preparation.ipynb
   |-- ML Pipeline Preparation.ipynb
   |-- README.md
+~~~~~~~
 
   1. process_data.py: This python excutuble code takes as its input csv files containing
      message data and message categories (labels), and then creates a SQL database
