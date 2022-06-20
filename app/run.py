@@ -43,6 +43,18 @@ def index():
     genre_counts = df.groupby('genre').count()['message']
     genre_names = list(genre_counts.index)
     
+    
+    # category data for plotting
+    categories =  df[df.columns[4:]]
+    cate_counts = (categories.mean()*categories.shape[0]).sort_values(ascending=False)
+    cate_names = list(cate_counts.index)
+    
+    # Plotting of Categories Distribution in Direct Genre
+    direct_cate = df[df.genre == 'direct']
+    direct_cate_counts = (direct_cate.mean()*direct_cate.shape[0]).sort_values(ascending=False)
+    direct_cate_names = list(direct_cate_counts.index)
+    
+    
     # create visuals
     # TODO: Below is an example - modify to create your own visuals
     graphs = [
@@ -63,7 +75,47 @@ def index():
                     'title': "Genre"
                 }
             }
+        },
+        # Second Plot of the Category.
+        {
+            'data': [
+                Bar(
+                    x=cate_names,
+                    y=cate_counts
+                )
+            ],
+
+            'layout': {
+                'title': 'Distribution of Message Categories',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Categories"
+                }
+            }
+            
+        },
+        # Third Plot of the Categories.
+        {
+            'data': [
+                Bar(
+                    x=direct_cate_names,
+                    y=direct_cate_counts
+                )
+            ],
+
+            'layout': {
+                'title': 'Categories Distribution in Direct Genre',
+                'yaxis': {
+                    'title': "Count"
+                },
+                'xaxis': {
+                    'title': "Categories in Direct Genre"
+                }
+            }
         }
+        
     ]
     
     # encode plotly graphs in JSON
